@@ -27,8 +27,7 @@ class SingleLinkedList {
 
   traverse() {
     let current = this.head;
-    while(current) {
-      console.log(current);
+    while (current) {
       current = current.next;
     }
   }
@@ -36,13 +35,30 @@ class SingleLinkedList {
   pop() {
     if (!this.head) return null;
     let current = this.head;
-    let newTail = current;
-    while(current.next) {
+    let newTail;
+    while (current.next) {
       newTail = current;
       current = current.next;
     }
-    this.tail = newTail;
-    this.tail.next = null;
+    if (newTail) {
+      this.tail = newTail;
+      this.tail.next = null;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+    this.length--;
+    return current;
+  }
+
+  shift() {
+    if (!this.head) return null;
+    const current = this.head;
+
+    this.head = current.next;
+    if (!this.head) {
+      this.tail = null;
+    }
     this.length--;
     return current;
   }
@@ -63,10 +79,16 @@ console.log(JSON.stringify(sll, null, 2));
 console.log("***************");
 
 console.log("******* Traverse ********");
-sll.traverse()
+sll.traverse();
 console.log("***************");
 
 console.log("******* Pop ********");
-console.log(sll.pop())
-console.log(sll.pop())
+console.log(sll.pop());
+console.log(sll.pop());
+console.log(sll.pop());
+console.log("***************");
+
+console.log("******* Shift ********");
+console.log(sll.shift())
+console.log(sll.shift())
 console.log("***************");
