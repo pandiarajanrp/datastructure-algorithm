@@ -62,6 +62,44 @@ class SingleLinkedList {
     this.length--;
     return current;
   }
+
+  unshift(item) {
+    if (!this.head) {
+      this.push(item);
+    } else {
+      const nodeItem = new Node(item);
+      const currentHead = this.head;
+      nodeItem.next = currentHead
+      this.head = nodeItem;
+      this.length++;
+    }
+  }
+
+  get(index) {
+    if (!this.head || index >= this.length) return null;
+    if (index === 0) return this.head;
+    let current = this.head;
+    let counter = 0;
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+
+  set(index, val) {
+    if (index >= this.length) return null;
+    if (!this.head) {
+      this.push(val);
+    }
+    const currentItem = this.get(index);
+    if (currentItem) {
+      currentItem.val = val;
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 const sll = new SingleLinkedList();
@@ -73,22 +111,31 @@ sll.push("125");
 sll.push("150");
 sll.push("175");
 sll.push("200");
+// sll.unshift("100");
 
-console.log("******* SLL ********");
-console.log(JSON.stringify(sll, null, 2));
-console.log("***************");
+// console.log("******* SLL ********");
+// console.log(JSON.stringify(sll, null, 2));
+// console.log("***************");
 
-console.log("******* Traverse ********");
-sll.traverse();
-console.log("***************");
+// console.log("******* Traverse ********");
+// sll.traverse();
+// console.log("***************");
 
-console.log("******* Pop ********");
-console.log(sll.pop());
-console.log(sll.pop());
-console.log(sll.pop());
-console.log("***************");
+// console.log("******* Pop ********");
+// console.log(sll.pop());
+// console.log(sll.pop());
+// console.log(sll.pop());
+// console.log("***************");
 
-console.log("******* Shift ********");
-console.log(sll.shift())
-console.log(sll.shift())
-console.log("***************");
+// console.log("******* Shift ********");
+// console.log(sll.shift());
+// console.log(sll.shift());
+// console.log("***************");
+
+// console.log("******* Get ********");
+// console.log(sll.get(3));
+// console.log("***************");
+
+// console.log("******* Set ********");
+// console.log(sll.set(4, 190));
+// console.log("***************");
