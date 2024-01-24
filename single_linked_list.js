@@ -100,6 +100,34 @@ class SingleLinkedList {
       return false;
     }
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !! this.unshift(val);
+    console.log("*** index", index, this.length)
+    if (!this.head || index === this.length) {
+      this.push(val);
+    } else {
+      const previousItem = this.get(index - 1);
+      const currentItem = previousItem.next;
+      const newNode = new Node(val);
+      newNode.next = currentItem;
+      previousItem.next = newNode;
+      this.length++;
+    }
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    const previousItem = this.get(index - 1);
+    const currentItem = previousItem.next;
+    previousItem.next = currentItem.next;
+    this.length--;
+    return currentItem;
+  }
 }
 
 const sll = new SingleLinkedList();
@@ -111,7 +139,7 @@ sll.push("125");
 sll.push("150");
 sll.push("175");
 sll.push("200");
-// sll.unshift("100");
+//sll.unshift("100");
 
 // console.log("******* SLL ********");
 // console.log(JSON.stringify(sll, null, 2));
@@ -138,4 +166,14 @@ sll.push("200");
 
 // console.log("******* Set ********");
 // console.log(sll.set(4, 190));
+// console.log("***************");
+
+// console.log("******* Insert ********");
+// console.log(sll.insert(1, 190));
+// console.log(sll.insert(0, "FIRST"));
+// console.log(sll.insert(3, "LAST"));
+// console.log("***************");
+
+// console.log("******* Remove ********");
+// console.log(sll.remove(4));
 // console.log("***************");
