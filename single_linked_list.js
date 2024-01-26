@@ -128,6 +128,22 @@ class SingleLinkedList {
     this.length--;
     return currentItem;
   }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev;
+    // [25,50,75,100]
+    for (let i = 0; i < this.length; i++) {
+      next = node.next; //50
+      node.next = prev; // 25 -> null
+      prev = node; //25
+      node = next; //50
+    }
+    return this;
+  }
 }
 
 const sll = new SingleLinkedList();
@@ -139,7 +155,7 @@ sll.push("125");
 sll.push("150");
 sll.push("175");
 sll.push("200");
-//sll.unshift("100");
+sll.unshift("100");
 
 // console.log("******* SLL ********");
 // console.log(JSON.stringify(sll, null, 2));
@@ -177,3 +193,7 @@ sll.push("200");
 // console.log("******* Remove ********");
 // console.log(sll.remove(4));
 // console.log("***************");
+
+console.log("******* Reverse ********");
+console.log(sll.reverse());
+console.log("***************");
