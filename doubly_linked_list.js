@@ -55,13 +55,27 @@ class DoublyLinkedList {
     this.length--;
     return removedItem
   }
+  unshift(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 const dll = new DoublyLinkedList();
 dll.push("25");
-dll.push("50");
-dll.push("75");
-dll.push("100");
+
+// dll.push("50");
+// dll.push("75");
+// dll.push("100");
 // dll.push("125");
 // dll.push("150");
 // dll.push("175");
@@ -71,4 +85,7 @@ dll.push("100");
 //dll.pop()
 
 //shift
-dll.shift()
+//dll.shift()
+
+//unshift
+dll.unshift("50")
