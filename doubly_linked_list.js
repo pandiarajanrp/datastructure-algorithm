@@ -108,6 +108,20 @@ class DoublyLinkedList {
     this.length++;
     return newNode;
   }
+  remove(index) {
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    const removedItem = this.get(index);
+    if (removedItem) {
+      const nextItem = removedItem.next;
+      removedItem.prev.next = removedItem.next;
+      nextItem.prev = removedItem.prev;
+      removedItem.next = null;
+      removedItem.prev = null;
+      this.length--;
+    }
+    return removedItem;
+  }
 }
 
 //0  1  2  3   4   5   6   7
@@ -141,5 +155,8 @@ dll.push("200");
 // dll.set(5, "119")
 
 //insert
-dll.insert(4, "112")
-dll.insert(0, "1")
+// dll.insert(4, "112")
+// dll.insert(0, "1")
+
+//remove
+dll.remove(7);
