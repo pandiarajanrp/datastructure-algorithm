@@ -10,7 +10,6 @@ function isAnagram(str1, str2) {
   console.log(strMap1)
   console.log(strMap2)
 
-
   for (let [key, value] of Object.entries(strMap1)) {
     if (strMap2[key] !== value) return false
   }
